@@ -1,0 +1,87 @@
+/* Hoja de estilo generada con IA */
+/* 1. Estilos Generales y Tipografía */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+#consigna {
+    font-family: sans-serif;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* 2. Contenedores Principales */
+#mesa {
+    max-width: 370px;
+    min-height: 100px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #0e9572;
+    border-radius: 40px;
+}
+
+#naipes {
+    margin: 10px auto;
+    width: 90%;
+}
+
+#mesa > button {
+    width: 100%;
+    background-color: #10ac84;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+#error {
+    color: red;
+    font-size: 0.75em;
+}
+
+#mesa button:hover {
+    background-color: #0ca37a;
+}
+
+.x {
+    font-size: 0.000001em;
+    background-color: #f4f6f9;
+}
+
+/* ==========================================================================
+   6. Media Queries para Diseño Responsivo
+   ========================================================================== */
+
+/* Ajustes específicos para PC y Pantallas Grandes */
+@media (min-width: 768px) {
+    #mesa button {
+        width: auto; /* El botón recupera su tamaño normal en PC */
+        padding: 12px 30px;
+        margin: 10px auto;
+        display: block;
+        /* float: right; Lo alinea a la derecha para un look más limpio */
+    }
+}
+
+/* Adaptación estricta para Teléfonos Móviles */
+@media (max-width: 600px) {
+    body {
+        margin: 15px auto;
+        padding: 0 10px;
+    }
+}

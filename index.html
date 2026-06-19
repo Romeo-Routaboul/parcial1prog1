@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Juego de naipes</title>
+        <link rel="stylesheet" href="estilo.css">
+    </head>
+    <body>
+        <h1>Juego de naipes</h1>
+        <div id="mesa">
+            <div id="naipes">
+                <img id="naipe-0" src="baraja/reverso.png" alt="naipe">
+                <img id="naipe-1" src="baraja/reverso.png" alt="naipe">
+                <img id="naipe-2" src="baraja/reverso.png" alt="naipe">
+            </div>
+            <button type="button">Repartir</button>
+        </div>
+        <div id="resultado">
+            <p><strong>Resultado anterior: <span id="anterior">0</span></p>
+            <p><strong>Resultado actual: <span id="actual">0</span></p>
+        </div>
+        <hr>
+        <div id="consigna">
+<h2 id="consigna">Consigna</h2>
+<p>Revisar el archivo <code>index.html</code>, y agregar la siguiente funcionalidad modificando únicamente el archivo <code>script.js</code>.</p>
+<p>Al hacer clic en el botón que dice “Repartir”:</p>
+<ol type="1">
+<li>Invocar a la función <code>repartirTresNaipes()</code>. Esta función ya está desarrollada en el archivo, y retorna un array de tres objetos generados al azar, que representan tres naipes, cada uno de ellos con un palo y valor (se puede invocar la función desde consola y observar el resultado que retorna).</li>
+<li>Con estos objetos, mostrar las imágenes correspondientes a los tres naipes. Los archivos con las imágenes necesarias están en la carpeta <code>baraja</code>. Tener en cuenta que el atributo <code>src</code> de la imagen tendrá, por ejemplo la siguiente forma:
+<ul>
+<li><code>baraja/copa5.png</code> para el 5 de copas, o</li>
+<li><code>baraja/basto12.png</code> para el rey de bastos.</li>
+</ul></li>
+<li>Calcular el puntaje obtenido, del siguiente modo:
+<ul>
+<li>Si las tres cartas son de oro, el puntaje es de 100 puntos.</li>
+<li>De lo contrario, el puntaje es la suma de los valores de los tres naipes, sabiendo que las cartas de oro duplican su valor (por ejemplo, el siete de oro suma 14 puntos).</li>
+</ul></li>
+<li>La continuidad del juego depende de la siguiente condición:
+<ul>
+<li>Si se obtuvo un valor <strong>menor o igual</strong> que el anterior:
+<ul>
+<li>El que <em>hasta ahora</em> figuraba en la página como <strong>resultado actual</strong>, pasa a figurar como <strong>resultado anterior</strong>.</li>
+<li>El resultado actual será igual a <code>0</code>, sin importar lo obtenido en el punto 3.</li>
+<li>El botón debe quedar deshabilitado.</li>
+<li>El texto del botón debe decir “No se puede repartir de nuevo”</li>
+</ul></li>
+<li>Si el lanzamiento actual es <strong>mayor</strong> que el anterior:
+<ul>
+<li>El que hasta ahora figuraba en la página como resultado actual, pasa a figurar como resultado anterior.</li>
+<li>El nuevo resultado actual es el puntaje obtenido en el punto 3.</li>
+<li>El texto del botón debe decir “Repartir nuevamente”.</li>
+</ul></li>
+</ul></li>
+</ol>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
