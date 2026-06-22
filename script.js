@@ -46,9 +46,11 @@ function mostrarcartas () {
 // mostrarcartas()
 
 // 3 Calcular el puntaje obtenido
-let puntajeActual = 0;
+
 let puntajeAnterior = 0;
+let puntaje = 0
 function calcularPuntaje (arrayNaipesSorteados){ // la funcion recibirá la lista de naipes sorteados 
+  resultadoAnterior.textContent = puntajeAnterior
   if (naipeA.palo === "oro" && naipeB.palo === "oro" && naipeC.palo === "oro"){ // si todas las cartas son de oro
     puntaje = puntaje + 100}                                                    // sumamos 100 puntos.
   else {                                        // si NO todas las cartas son de oro entonces ..
@@ -62,7 +64,7 @@ function calcularPuntaje (arrayNaipesSorteados){ // la funcion recibirá la list
       }
     }
   }
-  console.log(puntaje);
+  puntajeAnterior = puntaje; // antes de finalizar la funcion asignamos a PuntajeAnterior el resultado actual pero no lo mostramos
   resultadoActual.textContent = puntaje
   puntaje = 0;
 }
