@@ -10,7 +10,6 @@ function repartirNaipe() {
   return {"valor": valor, "palo": palo}
 }
 
-
 // Esta función retorna un array de 3 objetos que representan 3 naipes.
 //
 // Esta función ya está hecha, solamente hay que invocarla.
@@ -28,52 +27,50 @@ function repartirTresNaipes() {
   }
 }
 
-// 1 Ejecutamos la funcion para repartir naipes
-// repartirTresNaipes()
-
-// 2 mostramos las imagenes correspondientes a la carta sorteada
-
-// asignamos a variables los elementos html que vamos a modificar
-let tresCartas = document.querySelector("#naipes"); // en esta variable almacenamos el div en el que estan las tres etiquetas img 
-let resultadoAnterior = document.querySelector("#anterior")
-let resultadoActual = document.querySelector("#actual")
-
-function mostrarcartas () {
-  // modificamos el div "naipes" para que muestre las las cartas almacenadas en la variable naipesSorteados
-  tresCartas.innerHTML = `<img id="naipe-0" src="baraja/${naipeA.palo}${naipeA.valor}.png" alt="naipe"> <img id="naipe-1" src="baraja/${naipeB.palo}${naipeB.valor}.png" alt="naipe"><img id="naipe-2" src="baraja/${naipeC.palo}${naipeC.valor}.png" alt="naipe"></img>`
+// creamos la funcion que mostrara los naipes
+function mostrarNaipes(array){
+  let i = 0                           // creamos el indice
+  for(let naipe of array){             //recorremos la lista de los 3 naipes 
+    document.querySelector("#naipe-"+ i).src = "baraja/" + naipe.palo + naipe.valor + ".png";  // rellenamos el src del naipe correspondiente con los datos del naipe iterado
+    i++
+  }
 }
 
-// mostrarcartas()
-
-// 3 Calcular el puntaje obtenido
-
-let puntajeAnterior = 0;
-let puntaje = 0
-function calcularPuntaje (arrayNaipesSorteados){ // la funcion recibirá la lista de naipes sorteados 
-  resultadoAnterior.textContent = puntajeAnterior
-  if (naipeA.palo === "oro" && naipeB.palo === "oro" && naipeC.palo === "oro"){ // si todas las cartas son de oro
-    puntaje = puntaje + 100}                                                    // sumamos 100 puntos.
-  else {                                        // si NO todas las cartas son de oro entonces ..
-    for (naipe of arrayNaipesSorteados){             // ejecutamos el for en donde,
-      if (naipe.palo === "oro"){                // si la carta iterada es de oro 
-        naipe.valor = naipe.valor * 2;          // multiplicamos el valor *2
-        puntaje = puntaje + naipe.valor;        // y sumamos al puntaje.
-      }
-      else {                                    // si la carta iterada NO es de oro
-        puntaje = puntaje + naipe.valor;        // la sumamos al puntaje normalmente
-      }
+function calcularPuntaje (array){
+  if (array[0].palo == "oro" && array[1].palo == "oro" && array[2].palo == "oro"){
+    return 100
+  }
+  suma = 0;
+  for (let naipe of array){
+    if (naipe.palo == "oro"){
+      suma = suma + naipe.valor * 2
+    } else {
+      suma = suma + naipe.valor
     }
   }
-  puntajeAnterior = puntaje; // antes de finalizar la funcion asignamos a PuntajeAnterior el resultado actual pero no lo mostramos
-  resultadoActual.textContent = puntaje
-  puntaje = 0;
+  return suma
 }
 
+// creamos el evento al tocar el boton que activa la fucncion que devuelve una array con tres naipes
+let boton = document.querySelector("#mesa button");
+let anterior = document.querySelector("#anterior");
+let actual = document.querySelector("#actual");
+boton.addEventListener('click', (e)=>{
+  let arrayNaipesSorteados = repartirTresNaipes();
+  mostrarNaipes(arrayNaipesSorteados);
+  let puntaje = calcularPuntaje(arrayNaipesSorteados); // ahora cada vez que se haga click, la varable puntaje contendra un int con el puntaje obtenido
+  console.log(puntaje);
 
-// creamos el listener en el que se ejecutan las funciones. ser reparten los naipes, se muestran y se calcula el puntaje
-let boton = document.querySelector("button")
-boton.addEventListener("click", (e) => {
-  let naipesSorteados = repartirTresNaipes();
-  mostrarcartas()
-  calcularPuntaje(naipesSorteados)
+  anterior.textContent = parseInt(actual.textContent)
+  actual.textContent = puntaje
+
+  if (parseInt(anterior.textContent) >= parseInt(actual.textContent)){
+    boton.disabled = true
+    boton.textContent = "No se puede repartir de nuevo"
+    actual.textContent = 0
+    console.log("perdiste")
+  } else {
+    boton.textContent = "Repartir nuevamente"
+    console.log("seguis jugando")
+  }
 })
